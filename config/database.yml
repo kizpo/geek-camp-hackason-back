@@ -18,3 +18,7 @@ test:
 production:
   <<: *default
   database: donate_chat_production
+
+cable:
+  <<: *default
+  database: donate_chat_cable
