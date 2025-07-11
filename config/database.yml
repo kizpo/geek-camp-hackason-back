@@ -25,3 +25,6 @@ production:
   queue:
     <<: *default
     database: donate_chat_production
+  cache:
+    <<: *default
+    database: myapp_production
