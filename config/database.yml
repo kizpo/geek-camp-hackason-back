@@ -9,16 +9,19 @@ default: &default
 
 development:
   <<: *default
-  database: myapp_development
+  database: donate_chat_development
 
 test:
   <<: *default
-  database: myapp_test
+  database: donate_chat_test
 
 production:
   primary:
     <<: *default
-    database: myapp_production
+    database: donate_chat_production
   cable:
     <<: *default
-    database: myapp_production
+    database: donate_chat_production
+  queue:
+    <<: *default
+    database: donate_chat_production
