@@ -16,5 +16,9 @@ test:
   database: myapp_test
 
 production:
-  <<: *default
-  database: myapp_production
+  primary:
+    <<: *default
+    database: myapp_production
+  cable:
+    <<: *default
+    database: myapp_production
