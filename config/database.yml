@@ -21,4 +21,4 @@ production:
 
 cable:
   <<: *default
-  database: donate_chat_cable
+  database: donate_chat_production
