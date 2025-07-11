@@ -22,3 +22,7 @@ production:
 cable:
   <<: *default
   database: donate_chat_production
+
+queue:
+  <<: *default
+  database: donate_chat_production
