@@ -16,13 +16,14 @@ test:
   database: donate_chat_test
 
 production:
-  <<: *default
-  database: donate_chat_production
+  primary:
+    <<: *default
+    database: donate_chat_production
 
-cable:
-  <<: *default
-  database: donate_chat_production
+  cable:
+    <<: *default
+    database: donate_chat_production
 
-queue:
-  <<: *default
-  database: donate_chat_production
+  queue:
+    <<: *default
+    database: donate_chat_production
