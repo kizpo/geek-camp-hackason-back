@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_07_11_072315) do
+ActiveRecord::Schema[8.0].define(version: 2025_07_18_020628) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -38,12 +38,12 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_11_072315) do
   create_table "streamers", force: :cascade do |t|
     t.string "name", null: false
     t.string "email", null: false
-    t.string "password", null: false
     t.string "youtube_url"
     t.string "twitch_url"
     t.integer "donation_share_ratio", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "password_digest"
     t.index ["email"], name: "index_streamers_on_email", unique: true
   end
 
@@ -59,9 +59,9 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_11_072315) do
   create_table "viewers", force: :cascade do |t|
     t.string "name", null: false
     t.string "email", null: false
-    t.string "password", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "password_digest"
     t.index ["email"], name: "index_viewers_on_email", unique: true
   end
 

@@ -1,6 +1,6 @@
-class ViewersController < ApplicationController
-    before_action :set_viewer, only: %i[show update destroy]
-    # before_action :authorize_request
+class Api::V1::ViewersController < ApplicationController
+    before_action :set_viewer, only: %i[ update destroy]
+    before_action :authenticate_user, except: [:create]
 
     def index
         @viewers = Viewer.all
@@ -15,9 +15,9 @@ class ViewersController < ApplicationController
         @viewer = Viewer.new(viewer_params)
 
         if @viewer.save
-        render json: @viewer, status: :created
+            render json: @viewer, status: :created
         else
-        render json: @viewer.errors, status: :unprocessable_entity
+            render json: @viewer.errors, status: :unprocessable_entity
         end
     end
 

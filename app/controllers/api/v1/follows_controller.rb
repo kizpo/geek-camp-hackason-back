@@ -1,4 +1,4 @@
-class FollowsController < ApplicationController
+class Api::V1::FollowsController < ApplicationController
     before_action :set_follow, only: %i[show update destroy]
     # before_action :authorize_request
 

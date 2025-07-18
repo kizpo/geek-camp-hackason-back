@@ -1,6 +1,6 @@
-class StreamersController < ApplicationController
+class Api::V1::StreamersController < ApplicationController
     before_action :set_streamer, only: %i[show update destroy]
-    # before_action :authorize_request
+    before_action :authenticate_user, except: [:create]
 
     def index
         @streamers = Streamer.all

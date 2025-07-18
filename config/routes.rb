@@ -7,5 +7,12 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
-  resources :streamers, :viewers, :comments, :streams, :follows
+  
+  namespace :api do
+    namespace :v1 do
+      resources :streamers, :viewers, :comments, :streams, :follows
+      post 'auth/streamer_login', to: 'auth#streamer_login'
+      post 'auth/viewer_login', to: 'auth#viewer_login'
+    end
+  end
 end

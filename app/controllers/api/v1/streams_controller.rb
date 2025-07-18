@@ -1,4 +1,4 @@
-class StreamsController < ApplicationController
+class Api::V1::StreamsController < ApplicationController
     before_action :set_stream, only: %i[show update destroy]
     # before_action :authorize_request
 
