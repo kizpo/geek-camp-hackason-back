@@ -1,5 +1,5 @@
 class Api::V1::ViewersController < ApplicationController
-    before_action :set_viewer, only: %i[ update destroy]
+    before_action :set_viewer, only: %i[show update destroy]
     before_action :authenticate_user, except: [:create]
 
     def index
