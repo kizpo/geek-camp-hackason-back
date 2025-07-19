@@ -7,7 +7,7 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
-DonationTarget.create!([
+DonationTarget..find_or_create_by!([
     { name: "日本赤十字社", website_url: "https://www.jrc.or.jp", contact_email: "info@jrc.or.jp", bank_account_info: "みずほ銀行 本店" },
     { name: "ユニセフ（UNICEF）", website_url: "https://www.unicef.or.jp", contact_email: "support@unicef.or.jp", bank_account_info: "三井住友銀行 本店" },
     { name: "国境なき医師団", website_url: "https://www.msf.or.jp", contact_email: "info@tokyo.msf.or.jp", bank_account_info: "三菱UFJ銀行 本店" },
