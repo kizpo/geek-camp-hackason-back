@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   
   namespace :api do
     namespace :v1 do
-      resources :streamers, :viewers, :comments, :streams, :follows
+      resources :streamers, :viewers, :comments, :streams, :follows, :donation_targets
       post 'auth/streamer_login', to: 'auth#streamer_login'
       post 'auth/viewer_login', to: 'auth#viewer_login'
       get 'get_selected_streamers_stream', to: 'streams#get_selected_streamers_stream'

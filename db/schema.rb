@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_07_19_045413) do
+ActiveRecord::Schema[8.0].define(version: 2025_07_19_081736) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -23,6 +23,15 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_19_045413) do
     t.datetime "updated_at", null: false
     t.index ["stream_id"], name: "index_comments_on_stream_id"
     t.index ["viewer_id"], name: "index_comments_on_viewer_id"
+  end
+
+  create_table "donation_targets", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "website_url"
+    t.text "bank_account_info"
+    t.string "contact_email"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "follows", force: :cascade do |t|

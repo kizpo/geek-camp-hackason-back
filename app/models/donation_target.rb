@@ -1,0 +1,2 @@
+class DonationTarget < ApplicationRecord
+end
