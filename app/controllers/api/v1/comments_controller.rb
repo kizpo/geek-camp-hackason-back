@@ -38,6 +38,25 @@ class Api::V1::CommentsController < ApplicationController
         }
     end
 
+    def get_comment_history
+        viewer_id = params[:viewer_id]
+
+        comments = Comment.includes(:stream)
+                            .where(viewer_id: viewer_id)
+                            .order(created_at: :asc)
+
+        result = comments.map do |comment|
+            {
+                content: comment.content,
+                amount: comment.amount,
+                stream_name: comment.stream.title,
+                stream_date: comment.created_at.strftime("%Y-%m-%d %H:%M:%S")
+            }
+        end
+
+        render json: result
+    end
+
     def create
         @comment = Comment.new(comment_params)
 

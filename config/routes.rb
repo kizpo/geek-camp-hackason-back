@@ -16,6 +16,7 @@ Rails.application.routes.draw do
       post 'auth/viewer_login', to: 'auth#viewer_login'
       get 'get_selected_streamers_stream', to: 'streams#get_selected_streamers_stream'
       get 'get_donations_amount', to: 'comments#get_donations_amount'
+      get 'get_comment_history', to: 'comments#get_comment_history'
     end
   end
 end
