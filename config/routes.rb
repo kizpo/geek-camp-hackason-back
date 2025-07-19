@@ -14,6 +14,7 @@ Rails.application.routes.draw do
       resources :streamers, :viewers, :comments, :streams, :follows
       post 'auth/streamer_login', to: 'auth#streamer_login'
       post 'auth/viewer_login', to: 'auth#viewer_login'
+      get 'get_selected_streamers_stream', to: 'streams#get_selected_streamers_stream'
     end
   end
 end

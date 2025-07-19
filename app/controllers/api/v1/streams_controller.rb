@@ -11,6 +11,14 @@ class Api::V1::StreamsController < ApplicationController
         render json: @stream
     end
 
+    def get_selected_streamers_stream
+        streamer_id = params[:streamer_id]
+
+        stream = Stream.where(streamer_id: streamer_id, status: 'live')
+
+        render json: stream
+    end
+
     def create
         @stream = Stream.new(stream_params)
 
