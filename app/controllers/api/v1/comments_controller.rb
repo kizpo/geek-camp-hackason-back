@@ -11,6 +11,33 @@ class Api::V1::CommentsController < ApplicationController
         render json: @comment
     end
 
+    def get_donations_amount
+        if params[:streamer_id].present?
+            comments = Comment.joins(stream: :streamer)
+                            .where(streams: { streamer_id: params[:streamer_id] })
+                            .includes(stream: :streamer)
+        else
+            comments = Comment.includes(stream: :streamer)
+        end
+
+        total_amount = 0
+        total_donation = 0
+
+        comments.each do |comment|
+            amount = comment.amount
+            streamer_ratio = comment.stream.streamer.donation_share_ratio
+            donation_part = amount * streamer_ratio / 100
+
+            total_amount += amount
+            total_donation += donation_part
+        end
+
+        render json: {
+            total_amount: total_amount,
+            total_donation: total_donation
+        }
+    end
+
     def create
         @comment = Comment.new(comment_params)
 
