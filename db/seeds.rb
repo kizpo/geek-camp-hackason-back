@@ -1,13 +1,4 @@
-# This file should ensure the existence of records required to run the application in every environment (production,
-# development, test). The code here should be idempotent so that it can be executed at any point in every environment.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Example:
-#
-#   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
-#     MovieGenre.find_or_create_by!(name: genre_name)
-#   end
-DonationTarget..find_or_create_by!([
+donation_targets = [
     { name: "日本赤十字社", website_url: "https://www.jrc.or.jp", contact_email: "info@jrc.or.jp", bank_account_info: "みずほ銀行 本店" },
     { name: "ユニセフ（UNICEF）", website_url: "https://www.unicef.or.jp", contact_email: "support@unicef.or.jp", bank_account_info: "三井住友銀行 本店" },
     { name: "国境なき医師団", website_url: "https://www.msf.or.jp", contact_email: "info@tokyo.msf.or.jp", bank_account_info: "三菱UFJ銀行 本店" },
@@ -20,4 +11,12 @@ DonationTarget..find_or_create_by!([
     { name: "シェア", website_url: "https://share.or.jp", contact_email: "info@share.or.jp", bank_account_info: "みずほ銀行 本店" },
     { name: "ピースウィンズ・ジャパン", website_url: "https://peace-winds.org", contact_email: "info@peace-winds.org", bank_account_info: "三井住友銀行 本店" },
     { name: "グッドネーバーズ・ジャパン", website_url: "https://www.gnjp.org", contact_email: "info@gnjp.org", bank_account_info: "三菱UFJ銀行 本店" }
-])
+]
+
+donation_targets.each do |target|
+    DonationTarget.find_or_create_by!(name: target[:name]) do |t|
+        t.website_url = target[:website_url]
+        t.contact_email = target[:contact_email]
+        t.bank_account_info = target[:bank_account_info]
+    end
+end
