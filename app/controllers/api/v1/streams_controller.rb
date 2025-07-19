@@ -1,6 +1,6 @@
 class Api::V1::StreamsController < ApplicationController
     before_action :set_stream, only: %i[show update destroy]
-    # before_action :authorize_request
+    before_action :authenticate_user
 
     def index
         @streams = Stream.all
@@ -15,9 +15,9 @@ class Api::V1::StreamsController < ApplicationController
         @stream = Stream.new(stream_params)
 
         if @stream.save
-        render json: @stream, status: :created
+            render json: @stream, status: :created
         else
-        render json: @stream.errors, status: :unprocessable_entity
+            render json: @stream.errors, status: :unprocessable_entity
         end
     end
 

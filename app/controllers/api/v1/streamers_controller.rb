@@ -15,9 +15,9 @@ class Api::V1::StreamersController < ApplicationController
         @streamer = Streamer.new(streamer_params)
 
         if @streamer.save
-        render json: @streamer, status: :created
+            render json: @streamer, status: :created
         else
-        render json: @streamer.errors, status: :unprocessable_entity
+            render json: @streamer.errors, status: :unprocessable_entity
         end
     end
 

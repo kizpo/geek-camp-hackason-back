@@ -1,6 +1,6 @@
 class Api::V1::FollowsController < ApplicationController
     before_action :set_follow, only: %i[show update destroy]
-    # before_action :authorize_request
+    before_action :authenticate_user
 
     def index
         @follows = Follow.all
@@ -15,9 +15,9 @@ class Api::V1::FollowsController < ApplicationController
         @follow = Follow.new(follow_params)
 
         if @follow.save
-        render json: @follow, status: :created
+            render json: @follow, status: :created
         else
-        render json: @follow.errors, status: :unprocessable_entity
+            render json: @follow.errors, status: :unprocessable_entity
         end
     end
 

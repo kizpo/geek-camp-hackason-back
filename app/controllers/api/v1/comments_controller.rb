@@ -1,6 +1,6 @@
 class Api::V1::CommentsController < ApplicationController
     before_action :set_comment, only: %i[show update destroy]
-    # before_action :authorize_request
+    before_action :authenticate_user
 
     def index
         @comments = Comment.all
@@ -15,9 +15,9 @@ class Api::V1::CommentsController < ApplicationController
         @comment = Comment.new(comment_params)
 
         if @comment.save
-        render json: @comment, status: :created
+            render json: @comment, status: :created
         else
-        render json: @comment.errors, status: :unprocessable_entity
+            render json: @comment.errors, status: :unprocessable_entity
         end
     end
 
