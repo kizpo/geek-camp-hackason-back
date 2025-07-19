@@ -51,6 +51,6 @@ class Api::V1::StreamsController < ApplicationController
     end
 
     def stream_params
-        params.require(:stream).permit(:streamer_id, :title, :status, :description)
+        params.require(:stream).permit(:streamer_id, :title, :status, :description, :stream_url)
     end
 end
