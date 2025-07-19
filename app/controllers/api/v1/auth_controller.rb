@@ -1,4 +1,5 @@
 class Api::V1::AuthController < ApplicationController
+  skip_before_action :authenticate_user, only: [:streamer_login, :viewer_login]
 
   def streamer_login
     streamer = Streamer.find_by(email: params[:email])
