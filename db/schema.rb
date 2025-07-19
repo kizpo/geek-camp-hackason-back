@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_07_19_081736) do
+ActiveRecord::Schema[8.0].define(version: 2025_07_19_085915) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -53,6 +53,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_19_081736) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "password_digest"
+    t.bigint "donation_target_id"
+    t.index ["donation_target_id"], name: "index_streamers_on_donation_target_id"
     t.index ["email"], name: "index_streamers_on_email", unique: true
   end
 
@@ -80,5 +82,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_19_081736) do
   add_foreign_key "comments", "viewers"
   add_foreign_key "follows", "streamers", column: "followee_id"
   add_foreign_key "follows", "viewers", column: "follower_id"
+  add_foreign_key "streamers", "donation_targets"
   add_foreign_key "streams", "streamers"
 end

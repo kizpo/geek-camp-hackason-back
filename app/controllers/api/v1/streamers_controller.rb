@@ -8,7 +8,9 @@ class Api::V1::StreamersController < ApplicationController
     end
 
     def show
-        render json: @streamer
+        live_status = @streamer.streams.exists?(status: 'live') ? 'live' : 'offline'
+
+        render json: @streamer.as_json.merge(status: live_status)
     end
 
     def create
@@ -43,6 +45,6 @@ class Api::V1::StreamersController < ApplicationController
     end
 
     def streamer_params
-        params.require(:streamer).permit(:name, :email, :password, :youtube_url, :twitch_url, :donation_share_ratio)
+        params.require(:streamer).permit(:name, :email, :password, :youtube_url, :twitch_url, :donation_share_ratio, :donation_target_id)
     end
 end
